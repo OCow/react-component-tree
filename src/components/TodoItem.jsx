@@ -1,28 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 function TodoItem(props) {
-  const [itemState, setItemState] = useState({
-    todoItem: props.item,
-    isCrossed: false,
-  });
-
-  function onClickItem(event) {
-    console.log(event.target);
-    setItemState((prevState) => {
-      return { ...prevState, isCrossed: !prevState.isCrossed };
-    });
-  }
-
+  //return <li onClick={props.onCheck}>{props.item}</li>;
   return (
     <li
-      onClick={onClickItem}
-      style={
-        itemState.isCrossed
-          ? { textDecoration: "line-through" }
-          : { textDecoration: "none" }
-      }
+      onClick={() => {
+        props.onCheck(props.id);
+      }}
     >
-      {itemState.todoItem}
+      {props.item}
     </li>
   );
 }
